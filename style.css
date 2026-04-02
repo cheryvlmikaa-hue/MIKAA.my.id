@@ -1,0 +1,191 @@
+
+Percakapan dengan Gemini
+Anda berkata
+cara membuat tampilan github seperti ini dan tambahin lagu
+
+Gemini berkata
+Membuat tampilan web toko (store) untuk Minecraft yang di-hosting di GitHub Pages seperti pada gambar melibatkan penggunaan HTML, CSS, dan sedikit JavaScript untuk fitur musiknya.
+
+Berikut adalah panduan langkah demi langkah dan kode dasar yang bisa kamu gunakan.
+
+1. Persiapan File
+Di dalam repository GitHub kamu, buatlah struktur file seperti ini:
+
+index.html (Struktur utama)
+
+style.css (Tampilan/Desain)
+
+music.mp3 (File lagu yang ingin kamu putar)
+
+2. Kode HTML (index.html)
+Salin kode ini ke dalam file index.html. Kode ini sudah mencakup tombol musik dan struktur kartu produk.
+
+HTML
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIKASTORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="music-container">
+        <button id="musicToggle" class="music-btn">🎵</button>
+        <audio id="bgMusic" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>MIKASTORE</h1>
+            <p class="description">Selamat datang di MikaStore. Kami menyediakan berbagai macam Rank dan kebutuhan Power-Up untuk meningkatkan pengalaman bermain kamu!</p>
+            
+            <div class="main-buttons">
+                <a href="#" class="btn-primary">🎮 JOIN SERVER MCPE</a>
+                <a href="https://wa.me/nomorkamu" class="btn-whatsapp">💬 HUBUNGI ADMIN (WHATSAPP)</a>
+            </div>
+        </header>
+
+        <section class="product-list">
+            <div class="card">
+                <div class="card-info">
+                    <span>🟢 STONE</span>
+                    <span class="price">5.000</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-buy">BELI</button>
+                    <button class="btn-feature">FITUR</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-info">
+                    <span>🟡 GOLD</span>
+                    <span class="price">20.000</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-buy">BELI</button>
+                    <button class="btn-feature">FITUR</button>
+                </div>
+            </div>
+            
+            </section>
+    </div>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicToggle');
+
+        btn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                btn.innerText = "⏸️";
+            } else {
+                music.pause();
+                btn.innerText = "🎵";
+            }
+        });
+    </script>
+</body>
+</html>
+3. Kode CSS (style.css)
+Gunakan CSS ini untuk memberikan efek transparan (glassmorphism) dan latar belakang gambar Minecraft.
+
+CSS
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('background-minecraft.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.logo {
+    width: 80px;
+    border-radius: 10px;
+}
+
+.description {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    margin: 20px 0;
+}
+
+/* Tombol Utama */
+.btn-primary, .btn-whatsapp {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.btn-primary { background: #222; }
+.btn-whatsapp { background: white; color: black; }
+
+/* Kartu Produk */
+.card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.price { color: #4eff4e; }
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-buy, .btn-feature {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-buy { background: white; color: black; }
+.btn-feature { background: #444; color: white; }
+
+/* Musik */
+.music-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.music-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
